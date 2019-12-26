@@ -1,0 +1,25 @@
+# -*- Makefile -*- Para Borland C++ Compiler
+#
+# $Id: Makefile.bcc32 918 2005-01-17 23:40:59Z dsevilla $
+#
+!include makeincl.inc
+
+# Ficheros a construir
+EXE=winsh.exe
+ALLSRCS=winsh.c buffer.c  gettok.c  procline.c  runcom.c  shell.c  userfn.c 
+ALLOBJS=$(ALLSRCS:.c=.obj)
+
+all: $(EXE)
+
+$(EXE): $(ALLOBJS)
+	$(CPP) $(CPPFLAGS) $**
+
+clean:
+   -@if exist *.obj del *.obj                 >nul
+   -@if exist *.lib del *.lib                 >nul
+   -@if exist *.exe del *.exe                 >nul
+
+# Reglas implícitas
+.c.obj:
+    $(CPP) $(CPPFLAGS) -c {$? }
+

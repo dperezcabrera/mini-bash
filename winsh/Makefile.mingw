@@ -1,0 +1,29 @@
+#! /usr/bin/make -f
+
+# Fichero Makefile para construir el ejecutable winsh
+# con MingW32
+CFLAGS=-Wall
+CC=i586-mingw32msvc-cc
+EXE=winsh.exe
+
+OBJECTS=winsh.o gettok.o procline.o runcom.o buffer.o userfn.o shell.o
+
+$(EXE): $(OBJECTS)
+	$(CC) -o $@ $(LDFLAGS) $(LIBS) $^
+
+gettok.o: gettok.c
+
+procline.o: procline.c
+
+runcom.o: runcom.c
+
+winsh.o: winsh.c
+
+buffer.o: buffer.c
+
+userfn.o: userfn.c
+
+clean:
+	rm -rf *~ $(OBJECTS) $(EXE) core
+
+# $Id: Makefile.mingw 921 2005-01-19 14:22:03Z dsevilla $
